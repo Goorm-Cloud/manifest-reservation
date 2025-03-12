@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: zoochacha-server
-  namespace: zinucha
+  name: reservation-server
+  namespace: zoochacha-reservation
 spec:
   replicas: 1  # 서버는 확장 가능하도록 설정
   selector:
     matchLabels:
-      app: zoochacha-server
+      app: reservation-server
   template:
     metadata:
       labels:
-        app: zoochacha-server
+        app: reservation-server
     spec:
       containers:
-        - name: zoochacha-server
+        - name: reservation-server
           image: 651706756261.dkr.ecr.ap-northeast-2.amazonaws.com/reservation_service:13
           imagePullPolicy: Always
           env:
             - name: DB_HOST
-              value: "mysql.zoochacha-db.svc.cluster.local"
+              value: "mysql.zoochacha-db.svc.cluster.local"   # db 서비스(ClusterIP) 앤드포인트
             - name: DB_PORT
               value: "3306"
             - name: DB_NAME
@@ -34,11 +34,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: zoochacha-server
-  namespace: zinucha
+  name: reservation-server
+  namespace: zoochacha-reservation
 spec:
   selector:
-    app: zoochacha-server
+    app: reservation-server
   ports:
     - protocol: TCP
       port: 8003
