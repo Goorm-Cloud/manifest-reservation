@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: reservation-server
-          image: 651706756261.dkr.ecr.ap-northeast-2.amazonaws.com/reservation_service:92
+          image: 651706756261.dkr.ecr.ap-northeast-2.amazonaws.com/reservation_service:93
           imagePullPolicy: Always
           env:
             - name: DB_HOST
